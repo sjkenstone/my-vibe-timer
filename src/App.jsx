@@ -10,6 +10,21 @@ export default function App() {
   const [mode, setMode] = useState('work');
 
   useEffect(() => {
+  // 根据模式动态改变手机状态栏颜色
+  const metaColor = document.querySelector('meta[name="theme-color"]');
+  const color = mode === 'work' ? '#E2D7D1' : '#D1D7E2';
+  
+  if (metaColor) {
+    metaColor.setAttribute('content', color);
+  } else {
+    const meta = document.createElement('meta');
+    meta.name = "theme-color";
+    meta.content = color;
+    document.head.appendChild(meta);
+  }
+}, [mode]);
+
+  useEffect(() => {
     let interval = null;
     if (isActive && timeLeft > 0) {
       interval = setInterval(() => {
