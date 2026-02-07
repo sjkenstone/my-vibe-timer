@@ -61,16 +61,16 @@ export default function App() {
 
   return (
     // 主容器：层级设定为 relative 和 overflow-hidden 确保呼吸层不会溢出
-    <div className={`min-h-dvh flex items-center justify-center ${theme[mode].bg} transition-colors duration-1000 relative overflow-hidden`}>
+    <div className={`min-h-dvh w-screen flex items-center justify-center ${theme[mode].bg} transition-colors duration-1000 relative overflow-hidden px-4`}>
       
       {/* --- 呼吸层开始 --- */}
       {/* 这是一个位于背后的模糊大圆球，当 isActive 为真时，开启 animate-breath */}
       <div 
-        className={`absolute w-[150%] h-[150%] rounded-full blur-[120px] opacity-30 transition-all duration-1000 ${theme[mode].glow} ${isActive ? 'animate-breath' : 'scale-90 opacity-10'}`}
-      />
+    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] rounded-full blur-[100px] opacity-30 transition-all duration-1000 ${theme[mode].glow} ${isActive ? 'animate-breath' : 'scale-90 opacity-10'}`}
+  />
       {/* --- 呼吸层结束 --- */}
 
-      <div className="bg-white/30 backdrop-blur-3xl p-8 sm:p-12 rounded-[40px] sm:rounded-[50px] shadow-2xl border border-white/20 w-[90%] max-w-sm sm:w-96 text-center z-10">
+      <div className="bg-white/30 backdrop-blur-3xl p-8 sm:p-12 rounded-[40px] shadow-2xl border border-white/20 w-full max-w-[340px] sm:max-w-md text-center z-10 mx-auto">
         
         {/* 模式选择 */}
         <div className="flex justify-center space-x-8 mb-10">
@@ -88,7 +88,7 @@ export default function App() {
         </div>
 
         {/* 进度条 */}
-        <div className="relative flex items-center justify-center mb-12">
+        <div className="relative flex items-center justify-center mb-8 scale-90 sm:scale-100">
           <svg className="transform -rotate-90 w-72 h-72" viewBox="0 0 200 200">
             <circle cx="100" cy="100" r="85" stroke="#5E5E5E" strokeWidth="1" fill="none" className="opacity-10" />
             <circle 

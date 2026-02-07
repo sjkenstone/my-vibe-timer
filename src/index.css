@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* 定义呼吸动画 */
-@keyframes breath {
+/* @keyframes breath {
 
   0%,
   100% {
@@ -16,6 +16,31 @@
 }
 
 /* 呼吸动画类：持续 8 秒，平滑过渡，无限循环 */
+.animate-breath {
+  animation: breath 8s ease-in-out infinite;
+} */
+
+/* 强制所有元素计算宽度时包含内边距，并隐藏横向滚动条 */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+@keyframes breath {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
 .animate-breath {
   animation: breath 8s ease-in-out infinite;
 }
