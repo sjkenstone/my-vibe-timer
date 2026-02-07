@@ -46,7 +46,7 @@ export default function App() {
 
   return (
     // 主容器：层级设定为 relative 和 overflow-hidden 确保呼吸层不会溢出
-    <div className={`min-h-screen flex items-center justify-center ${theme[mode].bg} transition-colors duration-1000 relative overflow-hidden`}>
+    <div className={`min-h-dvh flex items-center justify-center ${theme[mode].bg} transition-colors duration-1000 relative overflow-hidden`}>
       
       {/* --- 呼吸层开始 --- */}
       {/* 这是一个位于背后的模糊大圆球，当 isActive 为真时，开启 animate-breath */}
