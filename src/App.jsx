@@ -55,7 +55,7 @@ export default function App() {
       />
       {/* --- 呼吸层结束 --- */}
 
-      <div className="bg-white/30 backdrop-blur-3xl p-12 rounded-[50px] shadow-2xl border border-white/20 w-96 text-center z-10">
+      <div className="bg-white/30 backdrop-blur-3xl p-8 sm:p-12 rounded-[40px] sm:rounded-[50px] shadow-2xl border border-white/20 w-[90%] max-w-sm sm:w-96 text-center z-10">
         
         {/* 模式选择 */}
         <div className="flex justify-center space-x-8 mb-10">
