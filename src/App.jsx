@@ -103,27 +103,91 @@ export default function App() {
               }}
             />
           </svg>
-          <div className="absolute text-6xl font-extralight tracking-tighter text-[#5E5E5E]">
-            {formatTime(timeLeft)}
-          </div>
+          {/* 圆形进度条中间的时间文字 */}
+{/* 圆形进度条中间的时间文字 - 冰刻升级版 */}
+<div className={`
+  absolute flex flex-col items-center justify-center 
+  font-mono-numbers z-20 
+  ${isActive ? 'animate-pulse-subtle' : ''}
+`}>
+  
+  {/* 时间主体：冰刻核心层 */}
+  <div className="
+    relative
+    text-7xl font-extralight tracking-[-0.05em] 
+    flex items-center 
+    text-white/80 
+    backdrop-blur-[2px] 
+    px-4 py-2 rounded-2xl
+  ">
+    {/* 文字的光影折射：利用 text-shadow 模拟冰面边缘光 */}
+    <span style={{ 
+      textShadow: '0 0 20px rgba(255,255,255,0.3), 2px 2px 4px rgba(0,0,0,0.05)' 
+    }}>
+      {formatTime(timeLeft).split(':')[0]}
+    </span>
+    
+    <span className={`mx-1 pb-2 font-light transition-opacity duration-1000 ${isActive ? 'opacity-30' : 'opacity-80'}`}>
+      :
+    </span>
+    
+    <span style={{ 
+      textShadow: '0 0 20px rgba(255,255,255,0.3), 2px 2px 4px rgba(0,0,0,0.05)' 
+    }}>
+      {formatTime(timeLeft).split(':')[1]}
+    </span>
+  </div>
+
+  {/* 状态标签：保持极简感 */}
+  <div className="text-[10px] tracking-[0.5em] uppercase text-morandi-ink opacity-30 mt-4 font-semibold">
+    {mode === 'work' ? 'Deep Work' : 'Resting'}
+  </div>
+</div>
         </div>
 
-        {/* 控制 */}
-        <div className="flex justify-center items-center space-x-10">
-          <button 
-            onClick={() => setIsActive(!isActive)}
-            className="bg-white/60 p-5 rounded-full hover:bg-white/90 transition-all active:scale-90 shadow-sm text-[#5E5E5E]"
-          >
-            {isActive ? <PauseIcon /> : <PlayIcon />}
-          </button>
-          
-          <button 
-            onClick={() => { setIsActive(false); setTimeLeft(totalSeconds); }}
-            className="text-[#5E5E5E] opacity-40 hover:opacity-100 hover:rotate-180 transition-all duration-700"
-          >
-            <ResetIcon />
-          </button>
-        </div>
+{/* 控制模块 - 冰刻升级版 */}
+<div className="flex justify-center items-center space-x-12 relative z-20">
+  
+  {/* 开始/暂停按钮：主冰块 */}
+  <button 
+    onClick={() => setIsActive(!isActive)}
+    className={`
+      relative group
+      p-6 rounded-full 
+      transition-all duration-500 ease-out
+      bg-white/20 backdrop-blur-md
+      border border-white/40
+      shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]
+      hover:bg-white/30 hover:scale-105 active:scale-95
+    `}
+    style={{
+      boxShadow: 'inset 0 0 12px rgba(255, 255, 255, 0.4)' // 内部冰裂纹理感
+    }}
+  >
+    {/* 按钮光效背景 */}
+    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+    
+    <div className="relative text-morandi-ink">
+      {isActive ? <PauseIcon /> : <PlayIcon />}
+    </div>
+  </button>
+  
+  {/* 重置按钮：次级冰块 */}
+  <button 
+    onClick={() => { setIsActive(false); setTimeLeft(totalSeconds); }}
+    className={`
+      p-3 rounded-full
+      bg-white/10 backdrop-blur-[4px]
+      border border-white/20
+      text-morandi-ink opacity-40 
+      hover:opacity-100 hover:rotate-180 
+      transition-all duration-700
+      active:scale-90
+    `}
+  >
+    <ResetIcon />
+  </button>
+</div>
       </div>
     </div>
   );
@@ -135,13 +199,15 @@ const PlayIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
   </svg>
 );
+
 const PauseIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M10 9v6m4-6v6" />
   </svg>
 );
+
 const ResetIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
   </svg>
 );

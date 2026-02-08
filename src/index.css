@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap');
 
 /* 定义呼吸动画 */
 /* @keyframes breath {
@@ -13,6 +14,29 @@
     transform: scale(1.1);
     opacity: 1;
   }
+}
+
+/* 让数字在跳动时宽度不闪烁 */
+.font-mono-numbers {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 时间跳动的心跳动画 */
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 1s ease-in-out infinite;
 }
 
 /* 呼吸动画类：持续 8 秒，平滑过渡，无限循环 */
